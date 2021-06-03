@@ -1,0 +1,92 @@
+ footer{
+    display: flex;
+    flex-direction: column;
+    /* font-weight: 100; */
+    margin-top: 80px;
+    font-family: 'Poppins', sans-serif;
+ }
+ .footer-top{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #dad6d6;
+    color: white;
+    background-color: rgb(133, 107, 107);
+    width: 100%;
+ }
+ .footer-top-items{
+    min-width: 300px;
+    width: 25%;
+    padding: 20px 50px 50px;
+ }
+ .footer-bottom{
+    background-color: rgb(88, 69, 69);
+    color: white;
+    text-align: center;
+    padding: 10px;
+ }
+ .footer-top-items ul {
+    padding: 0px;
+    list-style: none;
+    margin-top: 28px;
+ }
+ .footer-top-items ul li {
+    margin-bottom: 16px;
+ }
+ .footer-top-items ul li a{
+    text-decoration: none;
+    color: white;
+ }
+ .footer-top-items p{
+    margin-top: 28px;
+ }
+ .footer-top-items .icon{
+    transition: 1s;
+ }
+ 
+ .social-icon{
+    color: white;
+    background-color: none;
+    text-decoration: none;
+    font-size: 30px;
+    padding-right:30px ;
+    margin-top: 10px;
+    transition: 1s;
+ }
+ 
+ .fa-facebook-f:hover{
+   cursor: pointer;
+   color: rgb(52, 52, 161);
+ }
+ .fa-twitter:hover{
+    cursor: pointer;
+    color: rgb(0, 195, 255);
+  }
+ .fa-instagram:hover{
+    cursor: pointer;
+    color: #b67224;
+ 
+  }
+  .fa-youtube:hover{
+    cursor: pointer;
+    color:#FF0000;
+ 
+  }
+ span,p,a{
+    font-weight: 350; 
+ }
+ .tpitems{
+    margin-top: 28px;
+ }
+ 
+ .footer-top-items p{
+    padding-left: 20px;
+ }
+ .fas{
+    font-size: 60px;
+    padding: 5px;
+    color: rgb(62, 50, 50);
+ 
+ }
