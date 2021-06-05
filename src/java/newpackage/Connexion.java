@@ -19,7 +19,7 @@ public class Connexion {
     public static java.sql.Connection Seconnecter() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "123");
+            java.sql.Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "AdoptMe", "123");
             System.out.println("Successfully connected to oracle database ");
             return conn;
         } catch (ClassNotFoundException ex) {
