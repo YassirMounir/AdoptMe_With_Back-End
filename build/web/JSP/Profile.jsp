@@ -6,8 +6,11 @@
 <%
     if (session.getAttribute("id") == null) {
         response.sendRedirect(request.getContextPath() + "/index.jsp");
+        return;
     }
 %>
+<%@page import="newpackage.Connexion"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,14 +197,17 @@
                 </ul>
             </nav>
         </header>
-
-        <form action="${pageContext.request.contextPath}/Authen" method="post" onsubmit="return Confirmation();">
+<%  
+ResultSet R=Connexion.Seconnecter().createStatement().executeQuery("select * from proprietaire where ID_PRO='"+request.getSession().getAttribute("id")+"'");
+R.next();
+%>
+        <form action="${pageContext.request.contextPath}/MAJ" method="post" onsubmit="return Confirmation();">
             <div class="bigger">
                 <div class="main-div">
                     <div class="first-child">
                         <img src="${pageContext.request.contextPath}/PNG/DefaultProfile.jpg">
-                        <p style="color: whitesmoke; font-size: 20px;"><%out.print("Hello : " + request.getSession().getAttribute("nom") + " " + request.getSession().getAttribute("prenom"));%></p>
-                        <p style="color: whitesmoke;"><%out.print(request.getSession().getAttribute("ville"));%></p>
+                        <p style="color: whitesmoke; font-size: 20px;"><%out.print("Hello : " +R.getObject(2)+ " " + R.getObject(3));%></p>
+                        <p style="color: whitesmoke;"><%=R.getObject(5)%></p>
                     </div>
                     <div class="second-child">
                         <div class="">
@@ -210,14 +216,14 @@
                             <div class="information">
                                 <div class="full-name" style="color: whitesmoke;">
                                     <br> Full Name : <br>
-                                    <input type="text" value="<%out.print(request.getSession().getAttribute("nom"));%>"
+                                    <input type="text" value="<%=R.getObject(2)%>"
                                            id="inputid" name="mdnom">
-                                    <input type="text" value="<%out.print(request.getSession().getAttribute("prenom"));%>"
+                                    <input type="text" value="<%=R.getObject(3)%>"
                                            id="inputid" name="mdprenom">
                                 </div>
                                 <div class="City" style="color: whitesmoke;">
                                     <br> City : <br>
-                                    <input type="text" value="<%out.print(request.getSession().getAttribute("ville"));%>"
+                                    <input type="text" value="<%=R.getObject(5)%>"
                                            style="background: none; border: none;font-size: 20px; color: whitesmoke;" name="mdville">
                                 </div>
                             </div>
@@ -228,26 +234,26 @@
                             <div class="information" style="color: whitesmoke;">
                                 <div class="phone-number">
                                     <br> Phone : <br>
-                                    <input type="text"  value="<%out.print(request.getSession().getAttribute("tele"));%>"
+                                    <input type="text"  value="<%=R.getObject(4)%>"
                                            style="background: none; border: none; font-size: 20px; color: whitesmoke;" name="mdtele">
                                 </div>
                                 <div class="email">
                                     <br> E-mail : <br>
-                                    <input type="text" value="<%out.print(request.getSession().getAttribute("mail"));%>"
-                                           style="background: none; border: none; font-size: 20px; width: 250px; color: whitesmoke;" name="mdemail" readonly="">
+                                    <input type="text" value="<%=R.getObject(6)%>"
+                                           style="background: none; border: none; font-size: 20px; width: 250px; color: whitesmoke;" name="mdemail">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <%  
+                <% 
                     if(request.getAttribute("message")!=null)
                     out.print("<p style='color: red '>"+request.getAttribute("message")+"</p>");                       
-                %>
+                 %>
                 <div class="submit">
-                    <input type="submit" value="Modify" name="act" onclick="recuperer_etat(this)" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; color: whitesmoke;">
-                    <input type="submit" value="Add New Animal" name="act" onclick="recuperer_etat(this)" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;">
-                    <input type="submit" value="Delete My Profile" name="act" onclick="recuperer_etat(this)" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;" >
+                    <input type="submit" value="Modify" name="maj" onclick="recuperer_etat(this)" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; color: whitesmoke;">
+                    <input type="submit" value="Post Adoption Request" name="maj" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;">
+                    <input type="submit" value="Delete My Profile" name="maj" onclick="recuperer_etat(this)" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;" >
                 </div>
             </div>
         </form>

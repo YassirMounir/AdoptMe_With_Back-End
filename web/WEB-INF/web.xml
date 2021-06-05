@@ -8,6 +8,10 @@
         <servlet-name>profile</servlet-name>
         <servlet-class>newpackage.profile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MAJ</servlet-name>
+        <servlet-class>newpackage.MAJ</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authen</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MAJ</servlet-name>
+        <url-pattern>/MAJ</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

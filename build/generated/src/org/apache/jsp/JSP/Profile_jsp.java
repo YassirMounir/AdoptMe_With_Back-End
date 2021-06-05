@@ -3,6 +3,8 @@ package org.apache.jsp.JSP;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import newpackage.Connexion;
+import java.sql.ResultSet;
 
 public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -45,8 +47,11 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
 
     if (session.getAttribute("id") == null) {
         response.sendRedirect(request.getContextPath() + "/index.jsp");
+        return;
     }
 
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
@@ -256,10 +261,14 @@ if (session.getAttribute("id") != null) {
       out.write("                </ul>\n");
       out.write("            </nav>\n");
       out.write("        </header>\n");
+  
+ResultSet R=Connexion.Seconnecter().createStatement().executeQuery("select * from proprietaire where ID_PRO='"+request.getSession().getAttribute("id")+"'");
+R.next();
+
       out.write("\n");
       out.write("        <form action=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Authen\" method=\"post\" onsubmit=\"return Confirmation();\">\n");
+      out.write("/MAJ\" method=\"post\" onsubmit=\"return Confirmation();\">\n");
       out.write("            <div class=\"bigger\">\n");
       out.write("                <div class=\"main-div\">\n");
       out.write("                    <div class=\"first-child\">\n");
@@ -267,10 +276,10 @@ if (session.getAttribute("id") != null) {
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/PNG/DefaultProfile.jpg\">\n");
       out.write("                        <p style=\"color: whitesmoke; font-size: 20px;\">");
-out.print("Hello : " + request.getSession().getAttribute("nom") + " " + request.getSession().getAttribute("prenom"));
+out.print("Hello : " +R.getObject(2)+ " " + R.getObject(3));
       out.write("</p>\n");
       out.write("                        <p style=\"color: whitesmoke;\">");
-out.print(request.getSession().getAttribute("ville"));
+      out.print(R.getObject(5));
       out.write("</p>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"second-child\">\n");
@@ -281,18 +290,18 @@ out.print(request.getSession().getAttribute("ville"));
       out.write("                                <div class=\"full-name\" style=\"color: whitesmoke;\">\n");
       out.write("                                    <br> Full Name : <br>\n");
       out.write("                                    <input type=\"text\" value=\"");
-out.print(request.getSession().getAttribute("nom"));
+      out.print(R.getObject(2));
       out.write("\"\n");
       out.write("                                           id=\"inputid\" name=\"mdnom\">\n");
       out.write("                                    <input type=\"text\" value=\"");
-out.print(request.getSession().getAttribute("prenom"));
+      out.print(R.getObject(3));
       out.write("\"\n");
       out.write("                                           id=\"inputid\" name=\"mdprenom\">\n");
       out.write("                                </div>\n");
       out.write("                                <div class=\"City\" style=\"color: whitesmoke;\">\n");
       out.write("                                    <br> City : <br>\n");
       out.write("                                    <input type=\"text\" value=\"");
-out.print(request.getSession().getAttribute("ville"));
+      out.print(R.getObject(5));
       out.write("\"\n");
       out.write("                                           style=\"background: none; border: none;font-size: 20px; color: whitesmoke;\" name=\"mdville\">\n");
       out.write("                                </div>\n");
@@ -305,31 +314,31 @@ out.print(request.getSession().getAttribute("ville"));
       out.write("                                <div class=\"phone-number\">\n");
       out.write("                                    <br> Phone : <br>\n");
       out.write("                                    <input type=\"text\"  value=\"");
-out.print(request.getSession().getAttribute("tele"));
+      out.print(R.getObject(4));
       out.write("\"\n");
       out.write("                                           style=\"background: none; border: none; font-size: 20px; color: whitesmoke;\" name=\"mdtele\">\n");
       out.write("                                </div>\n");
       out.write("                                <div class=\"email\">\n");
       out.write("                                    <br> E-mail : <br>\n");
       out.write("                                    <input type=\"text\" value=\"");
-out.print(request.getSession().getAttribute("mail"));
+      out.print(R.getObject(6));
       out.write("\"\n");
-      out.write("                                           style=\"background: none; border: none; font-size: 20px; width: 250px; color: whitesmoke;\" name=\"mdemail\" readonly=\"\">\n");
+      out.write("                                           style=\"background: none; border: none; font-size: 20px; width: 250px; color: whitesmoke;\" name=\"mdemail\">\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("                ");
-  
+ 
                     if(request.getAttribute("message")!=null)
                     out.print("<p style='color: red '>"+request.getAttribute("message")+"</p>");                       
-                
+                 
       out.write("\n");
       out.write("                <div class=\"submit\">\n");
-      out.write("                    <input type=\"submit\" value=\"Modify\" name=\"act\" onclick=\"recuperer_etat(this)\" style=\"background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; color: whitesmoke;\">\n");
-      out.write("                    <input type=\"submit\" value=\"Add New Animal\" name=\"act\" onclick=\"recuperer_etat(this)\" style=\"background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;\">\n");
-      out.write("                    <input type=\"submit\" value=\"Delete My Profile\" name=\"act\" onclick=\"recuperer_etat(this)\" style=\"background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;\" >\n");
+      out.write("                    <input type=\"submit\" value=\"Modify\" name=\"maj\" onclick=\"recuperer_etat(this)\" style=\"background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; color: whitesmoke;\">\n");
+      out.write("                    <input type=\"submit\" value=\"Post Adoption Request\" name=\"maj\" style=\"background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;\">\n");
+      out.write("                    <input type=\"submit\" value=\"Delete My Profile\" name=\"maj\" onclick=\"recuperer_etat(this)\" style=\"background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;\" >\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </form>\n");
