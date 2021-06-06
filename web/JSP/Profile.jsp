@@ -168,6 +168,51 @@
             color: whitesmoke;
             width: 150px;
         }
+        .container{
+            /* background-color: whitesmoke; */
+            margin: 80px 0px 80px 0px;
+
+
+        }
+        .father{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+        }
+        .child{
+            /* border: 1px solid black ; */
+            border-radius: 20px;
+            /* margin: 20px 40px 20px 10px ; */
+            margin-left: 2%;
+            margin-bottom: 10%;
+            margin-right: 2%;
+            background-color: #856b6b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: rgba(49, 49, 99, 0.315) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            transition: 1s;
+        }
+
+        p{
+            padding: 0px 25px;
+        }
+        h2{
+            margin-bottom: -20px;
+        }
+        .separation{
+            height: 1px;
+            width: 240px;
+            background-color:rgba(22, 22, 22, 0.253);
+        }
+        .myanimal{
+            background-color: #584545;
+            border-radius: 40px;
+            text-align: center;
+            color: whitesmoke;
+            margin: 0 20px;
+        }
     </style>
     <body>
         <header>
@@ -197,16 +242,16 @@
                 </ul>
             </nav>
         </header>
-<%  
-ResultSet R=Connexion.Seconnecter().createStatement().executeQuery("select * from proprietaire where ID_PRO='"+request.getSession().getAttribute("id")+"'");
-R.next();
-%>
+        <%
+            ResultSet R = Connexion.Seconnecter().createStatement().executeQuery("select * from proprietaire where ID_PRO='" + request.getSession().getAttribute("id") + "'");
+            R.next();
+        %>
         <form action="${pageContext.request.contextPath}/MAJ" method="post" onsubmit="return Confirmation();">
             <div class="bigger">
                 <div class="main-div">
                     <div class="first-child">
                         <img src="${pageContext.request.contextPath}/PNG/DefaultProfile.jpg">
-                        <p style="color: whitesmoke; font-size: 20px;"><%out.print("Hello : " +R.getObject(2)+ " " + R.getObject(3));%></p>
+                        <p style="color: whitesmoke; font-size: 20px;"><%out.print("Hello : " + R.getObject(2) + " " + R.getObject(3));%></p>
                         <p style="color: whitesmoke;"><%=R.getObject(5)%></p>
                     </div>
                     <div class="second-child">
@@ -246,10 +291,11 @@ R.next();
                         </div>
                     </div>
                 </div>
-                <% 
-                    if(request.getAttribute("message")!=null)
-                    out.print("<p style='color: red '>"+request.getAttribute("message")+"</p>");                       
-                 %>
+                <%
+                    if (request.getAttribute("message") != null) {
+                        out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+                    }
+                %>
                 <div class="submit">
                     <input type="submit" value="Modify" name="maj" onclick="recuperer_etat(this)" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; color: whitesmoke;">
                     <input type="submit" value="Post Adoption Request" name="maj" style="background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; margin-left: 10px; color: whitesmoke;">
@@ -257,6 +303,28 @@ R.next();
                 </div>
             </div>
         </form>
+
+        <div class="myanimal">
+            <h2 style="padding: 10px"> My Animals </h2>
+            <div class="container">
+                <div class="father">  
+                    <%
+                        R = Connexion.Seconnecter().createStatement().executeQuery("select * from animal where ID_PRO ='" + request.getSession().getAttribute("id") + "'");
+                        while (R.next()) {
+                            out.print(" <div class = 'child' style='width:300px'>  "
+                                    + " <img style ='margin-top:10px; 'src = '../PNG/icons-avatar.png' width='150' height='150'>"
+                                    + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                    + "<h3> TYPE : " + R.getObject(6) + " </h3>"
+                                    + "<div class = 'separation' > </div>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> " + R.getObject(9) + " </p>"
+                                    + "</div>");
+                            
+                        }
+
+                    %>
+                </div>
+            </div>
+        </div>
 
 
 

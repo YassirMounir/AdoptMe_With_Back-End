@@ -91,7 +91,8 @@ public class Authen extends HttpServlet {
                 request.getRequestDispatcher("JSP/SignUp.jsp").forward(request, response);
             } else {
                 try {
-                    String req = "insert into proprietaire values ('P' || id_pro_c.nextval,'" + nom + "','" + prenom + "','" + numtel + "','" + city + "','" + email + "','" + password + "')";
+                    String req = "insert into proprietaire values ('P' || id_pro_c.nextval,'" 
+                            + nom + "','" + prenom + "','" + numtel + "','" + city + "','" + email + "','" + password + "')";
                     System.out.println(req);
                     r = Connexion.Seconnecter().createStatement().executeUpdate(req);
                     if (r != 0) {

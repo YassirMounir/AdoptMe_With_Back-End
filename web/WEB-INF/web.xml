@@ -12,6 +12,10 @@
         <servlet-name>MAJ</servlet-name>
         <servlet-class>newpackage.MAJ</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MAJAnimal</servlet-name>
+        <servlet-class>newpackage.MAJAnimal</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authen</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>MAJ</servlet-name>
         <url-pattern>/MAJ</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MAJAnimal</servlet-name>
+        <url-pattern>/MAJAnimal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

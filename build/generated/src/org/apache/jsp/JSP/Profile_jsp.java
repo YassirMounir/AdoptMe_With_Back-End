@@ -216,6 +216,51 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            color: whitesmoke;\n");
       out.write("            width: 150px;\n");
       out.write("        }\n");
+      out.write("        .container{\n");
+      out.write("            /* background-color: whitesmoke; */\n");
+      out.write("            margin: 80px 0px 80px 0px;\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("        }\n");
+      out.write("        .father{\n");
+      out.write("            display: flex;\n");
+      out.write("            flex-wrap: wrap;\n");
+      out.write("            justify-content: space-around;\n");
+      out.write("\n");
+      out.write("        }\n");
+      out.write("        .child{\n");
+      out.write("            /* border: 1px solid black ; */\n");
+      out.write("            border-radius: 20px;\n");
+      out.write("            /* margin: 20px 40px 20px 10px ; */\n");
+      out.write("            margin-left: 2%;\n");
+      out.write("            margin-bottom: 10%;\n");
+      out.write("            margin-right: 2%;\n");
+      out.write("            background-color: #856b6b;\n");
+      out.write("            display: flex;\n");
+      out.write("            flex-direction: column;\n");
+      out.write("            align-items: center;\n");
+      out.write("            box-shadow: rgba(49, 49, 99, 0.315) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;\n");
+      out.write("            transition: 1s;\n");
+      out.write("        }\n");
+      out.write("\n");
+      out.write("        p{\n");
+      out.write("            padding: 0px 25px;\n");
+      out.write("        }\n");
+      out.write("        h2{\n");
+      out.write("            margin-bottom: -20px;\n");
+      out.write("        }\n");
+      out.write("        .separation{\n");
+      out.write("            height: 1px;\n");
+      out.write("            width: 240px;\n");
+      out.write("            background-color:rgba(22, 22, 22, 0.253);\n");
+      out.write("        }\n");
+      out.write("        .myanimal{\n");
+      out.write("            background-color: #584545;\n");
+      out.write("            border-radius: 40px;\n");
+      out.write("            text-align: center;\n");
+      out.write("            color: whitesmoke;\n");
+      out.write("            margin: 0 20px;\n");
+      out.write("        }\n");
       out.write("    </style>\n");
       out.write("    <body>\n");
       out.write("        <header>\n");
@@ -261,10 +306,11 @@ if (session.getAttribute("id") != null) {
       out.write("                </ul>\n");
       out.write("            </nav>\n");
       out.write("        </header>\n");
-  
-ResultSet R=Connexion.Seconnecter().createStatement().executeQuery("select * from proprietaire where ID_PRO='"+request.getSession().getAttribute("id")+"'");
-R.next();
+      out.write("        ");
 
+            ResultSet R = Connexion.Seconnecter().createStatement().executeQuery("select * from proprietaire where ID_PRO='" + request.getSession().getAttribute("id") + "'");
+            R.next();
+        
       out.write("\n");
       out.write("        <form action=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -276,7 +322,7 @@ R.next();
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/PNG/DefaultProfile.jpg\">\n");
       out.write("                        <p style=\"color: whitesmoke; font-size: 20px;\">");
-out.print("Hello : " +R.getObject(2)+ " " + R.getObject(3));
+out.print("Hello : " + R.getObject(2) + " " + R.getObject(3));
       out.write("</p>\n");
       out.write("                        <p style=\"color: whitesmoke;\">");
       out.print(R.getObject(5));
@@ -330,10 +376,11 @@ out.print("Hello : " +R.getObject(2)+ " " + R.getObject(3));
       out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("                ");
- 
-                    if(request.getAttribute("message")!=null)
-                    out.print("<p style='color: red '>"+request.getAttribute("message")+"</p>");                       
-                 
+
+                    if (request.getAttribute("message") != null) {
+                        out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+                    }
+                
       out.write("\n");
       out.write("                <div class=\"submit\">\n");
       out.write("                    <input type=\"submit\" value=\"Modify\" name=\"maj\" onclick=\"recuperer_etat(this)\" style=\"background-color: #584545; border: none; border-radius: 5px; font-size: 18px; padding: 5px 10px; color: whitesmoke;\">\n");
@@ -342,6 +389,29 @@ out.print("Hello : " +R.getObject(2)+ " " + R.getObject(3));
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </form>\n");
+      out.write("\n");
+      out.write("        <div class=\"myanimal\">\n");
+      out.write("            <h2 style=\"padding: 10px\"> My Animals </h2>\n");
+      out.write("            <div class=\"container\">\n");
+      out.write("                <div class=\"father\">  \n");
+      out.write("                    ");
+
+                        R = Connexion.Seconnecter().createStatement().executeQuery("select * from animal where ID_PRO ='" + request.getSession().getAttribute("id") + "'");
+                        while (R.next()) {
+                            out.print(" <div class = 'child' style='width:300px'>  "
+                                    + " <img style ='margin-top:10px; 'src = '../PNG/icons-avatar.png' width='150' height='150'>"
+                                    + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                    + "<h3> TYPE : " + R.getObject(6) + " </h3>"
+                                    + "<div class = 'separation' > </div>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> " + R.getObject(9) + " </p>"
+                                    + "</div>");
+                        }
+
+                    
+      out.write("\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");

@@ -173,25 +173,26 @@
                 </ul>
             </nav>
         </header>
+
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="#" class="sign-up-form">
+                <form action="${pageContext.request.contextPath}/MAJAnimal" method="post"class="sign-up-form">
                     <h2 class="title">Enter Your Pet Informations</h2>
                     <div class="input-field">
                         Name : <br>
-                        <input type="text"/>
+                        <input type="text" name="nom"/>
                     </div>
                     <div class="input-field">
                         Age : <br>
-                        <input type="text"/>
+                        <input type="text" name="age"/>
                     </div>
                     <div class="input-field">
-                        Poids : <br>
-                        <input type="text"/>
+                        Weight : <br>
+                        <input type="text" name="poids"/>
                     </div>
                     <div class="input-field">
                         Race : <br>
-                        <select name="" id="">
+                        <select name="race">
                             <option value="dog" selected>Dog</option>
                             <option value="cat">Cat</option>
                             <option value="bird">Bird</option>
@@ -200,23 +201,30 @@
                     </div>
                     <div class="input-field">
                         Sexe : <br>
-                        <select name="" id="">
+                        <select name="sexe">
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
                     </div>
                     <div class="input-field">
-                        Couleur : <br>
-                        <input type="text"/>
+                        Color : <br>
+                        <input type="text" name="couleur"/>
                     </div>
                     <div class="input-fields">
                         Description :
                         <div class="txtnpt">
-                            <textarea name="txt" id="txtarea" cols="100" rows="8" >
-                            </textarea>
+                            <textarea id="txtarea" cols="100" rows="8" name="description" style="padding: 5px;"></textarea>
                         </div>
                     </div>
-                    <input type="submit" class="btn" value="Submit" />
+                    <%
+                        if (request.getAttribute("message") != null) {
+                            out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+                        }
+                    %>
+                    <div>
+                        <input type="submit" class="btn" value="Submit" name="confirm" style="margin-right: 20px;"/>
+                        <input type="submit" class="btn" value="Cancel" name="confirm" style="margin-left: 20px;"/>
+                    </div>
                 </form>
             </div>
         </div>

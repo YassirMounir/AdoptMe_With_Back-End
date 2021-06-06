@@ -200,7 +200,9 @@ public final class Addanimal_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <span class=\"bottom-span\"></span>\n");
       out.write("            </div>\n");
       out.write("            <div class=\"logo\">\n");
-      out.write("                <a href=\"../index.jsp\" class=\"logo\"><img src=\"{pageContext.request.contextPath}/PNG/logo1111.png\" /></a>\n");
+      out.write("                <a href=\"../index.jsp\" class=\"logo\"><img src=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/PNG/logo1111.png\" /></a>\n");
       out.write("            </div>\n");
       out.write("            <nav id=\"nav\">\n");
       out.write("                <ul>\n");
@@ -214,7 +216,9 @@ public final class Addanimal_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        ");
 if (session.getAttribute("id") != null) {
       out.write("\n");
-      out.write("                    <li><a href=\"#\">MY PROFILE</a></li>\n");
+      out.write("                    <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/JSP/Profile.jsp\">MY PROFILE</a></li>\n");
       out.write("                    <li>  <form method=\"POST\" action=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Authen\">\n");
@@ -233,25 +237,28 @@ if (session.getAttribute("id") != null) {
       out.write("                </ul>\n");
       out.write("            </nav>\n");
       out.write("        </header>\n");
+      out.write("\n");
       out.write("        <div class=\"forms-container\">\n");
       out.write("            <div class=\"signin-signup\">\n");
-      out.write("                <form action=\"#\" class=\"sign-up-form\">\n");
+      out.write("                <form action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/MAJAnimal\" method=\"post\"class=\"sign-up-form\">\n");
       out.write("                    <h2 class=\"title\">Enter Your Pet Informations</h2>\n");
       out.write("                    <div class=\"input-field\">\n");
       out.write("                        Name : <br>\n");
-      out.write("                        <input type=\"text\"/>\n");
+      out.write("                        <input type=\"text\" name=\"nom\"/>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"input-field\">\n");
       out.write("                        Age : <br>\n");
-      out.write("                        <input type=\"text\"/>\n");
+      out.write("                        <input type=\"text\" name=\"age\"/>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"input-field\">\n");
-      out.write("                        Poids : <br>\n");
-      out.write("                        <input type=\"text\"/>\n");
+      out.write("                        Weight : <br>\n");
+      out.write("                        <input type=\"text\" name=\"poids\"/>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"input-field\">\n");
       out.write("                        Race : <br>\n");
-      out.write("                        <select name=\"\" id=\"\">\n");
+      out.write("                        <select name=\"race\">\n");
       out.write("                            <option value=\"dog\" selected>Dog</option>\n");
       out.write("                            <option value=\"cat\">Cat</option>\n");
       out.write("                            <option value=\"bird\">Bird</option>\n");
@@ -260,23 +267,32 @@ if (session.getAttribute("id") != null) {
       out.write("                    </div>\n");
       out.write("                    <div class=\"input-field\">\n");
       out.write("                        Sexe : <br>\n");
-      out.write("                        <select name=\"\" id=\"\">\n");
+      out.write("                        <select name=\"sexe\">\n");
       out.write("                            <option value=\"male\">Male</option>\n");
       out.write("                            <option value=\"female\">Female</option>\n");
       out.write("                        </select>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"input-field\">\n");
-      out.write("                        Couleur : <br>\n");
-      out.write("                        <input type=\"text\"/>\n");
+      out.write("                        Color : <br>\n");
+      out.write("                        <input type=\"text\" name=\"couleur\"/>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"input-fields\">\n");
       out.write("                        Description :\n");
       out.write("                        <div class=\"txtnpt\">\n");
-      out.write("                            <textarea name=\"txt\" id=\"txtarea\" cols=\"100\" rows=\"8\" >\n");
-      out.write("                            </textarea>\n");
+      out.write("                            <textarea id=\"txtarea\" cols=\"100\" rows=\"8\" name=\"description\" style=\"padding: 5px;\"></textarea>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
-      out.write("                    <input type=\"submit\" class=\"btn\" value=\"Submit\" />\n");
+      out.write("                    ");
+
+                        if (request.getAttribute("message") != null) {
+                            out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+                        }
+                    
+      out.write("\n");
+      out.write("                    <div>\n");
+      out.write("                        <input type=\"submit\" class=\"btn\" value=\"Submit\" name=\"confirm\" style=\"margin-right: 20px;\"/>\n");
+      out.write("                        <input type=\"submit\" class=\"btn\" value=\"Cancel\" name=\"confirm\" style=\"margin-left: 20px;\"/>\n");
+      out.write("                    </div>\n");
       out.write("                </form>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");

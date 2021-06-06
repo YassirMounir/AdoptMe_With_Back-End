@@ -83,7 +83,7 @@
                         <div class="input-fields">
                             Enter Your Message Here :
                             <div class="txtnpt">
-                                <textarea name="txt" id="txtarea" cols="100" rows="8" >
+                                <textarea name="txt" id="txtarea" cols="100" rows="8" style="padding: 5px;">
                                 </textarea>
                             </div>
                         </div>

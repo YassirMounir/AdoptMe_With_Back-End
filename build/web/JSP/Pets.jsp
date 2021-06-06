@@ -4,6 +4,8 @@
     Author     : DellE5570
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="newpackage.Connexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,24 +22,23 @@
         <title>PETS</title>
     </head>
     <script>
-                $(document).ready(function () {
-        for (let index = 0; index < 6; index++) {
-        $(".father").append(`
-                < div class = "child" >
-                < img style = "margin-top:10px;" src = "${pageContext.request.contextPath}/PNG/icons-avatar.png" width = "150" height = "150" >
-                < h2 style = " text-shadow:none;" > NAME : HULK < /h2>
-                < h3 > TYPE : DOG < /h3>
-                < div class = "separation" > < /div>
-                < p > description of the animal < br > bla bla bla bla bla bla bla bla bla < /p>
-                < /div>`)
+        $(document).ready(function () {
+            for (let index = 0; index < 6; index++) {
+//        $(".father").append(` <div class = "child" >
+//                <img style = "margin-top:10px;" src = "${pageContext.request.contextPath}/PNG/icons-avatar.png" width = "150" height = "150">
+//                <h2 style = " text-shadow:none;" > NAME : HULK </h2>
+//                <h3> TYPE : DOG </h3>
+//                <div class = "separation" > </div>
+//                <p style = "text-transform:capitalize;"> description of the animal <br> bla bla bla bla bla bla bla bla bla </p>
+//                </div>`)
 
-        }
+            }
 
         })
-                function f1(){
-                var navbar = document.getElementById('nav');
-                        navbar.classList.toggle('show');
-                }
+        function f1() {
+            var navbar = document.getElementById('nav');
+            navbar.classList.toggle('show');
+        }
     </script>
     <body>
         <!-- HEADER BEGIN -->
@@ -71,41 +72,42 @@
         <!-- HEADER END -->
 
     <center>
-        <h2 style="margin: 30px;">Welcome To Adopte Me</h2>
-        <div class="main-search">
-            <div class="search-bar">
-                <div class="search">
-                    <input type="text" class="cls" placeholder=" What Are You Looking For?" name="search" >
+        <form action="${pageContext.request.contextPath}/MAJAnimal" method="post">
+            <h2 style="margin: 30px;">Welcome To Adopte Me</h2>
+            <div class="main-search">
+                <div class="search-bar">
+                    <div class="search">
+                        <input type="text" class="cls" placeholder=" What Are You Looking For?" name="search" >
+                    </div>
+                </div>
+                <div class="combo-box">
+                    <select class="lbl" name="Animals" id="cars">
+                        <option value=""selected >All Categories</option>
+                        <option value="dog">Dogs</option>
+                        <option value="cat">Cats</option>
+                        <option value="bird">Birds</option>
+                        <option value="fish">Fish</option>
+                    </select>
+                </div>
+                <div class="search-city">
+                    <select class="lbl" name="city" id="city">
+                        <option value=""selected>All Morocco</option>
+                        <option value="Casablanca">Casablanca</option>
+                        <option value="Rabat">Rabat</option>
+                        <option value="Marrakech">Marrakech</option>
+                        <option value="Tanger">Tanger</option>
+                    </select>
+                </div>
+                <div class="search-submitt">
+                    <button class="cl" type="submit" name="confirm" value="yes"><i class="fa fa-search"></i></button>
                 </div>
             </div>
-            <div class="combo-box">
-                <form action="#">
-                    <label for="cars"></label>
-                    <select class="lbl" name="Animals" id="cars">
-                        <option value="All"selected >All Categories</option>
-                        <option value="Dogs">Dogs</option>
-                        <option value="Cats">Cats</option>
-                        <option value="Birds">Birds</option>
-                        <option value="Fish">Fish</option>
-                    </select>
-                </form>
-            </div>
-            <div class="search-city">
-                <form action="#">
-                    <label for="city"></label>
-                    <select class="lbl" name="city" id="city">
-                        <option value="allcity"selected>All Morocco</option>
-                        <option value="casa">Casablanca</option>
-                        <option value="far">Rabat</option>
-                        <option value="kech">Marrakech</option>
-                        <option value="tng">Tanger</option>
-                    </select>
-                </form>
-            </div>
-            <div class="search-submitt">
-                <button class="cl" type="submit"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
+        </form>
+        <%
+            if (request.getAttribute("message") != null) {
+                out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+            }
+        %>
     </center>
 
 
@@ -155,22 +157,22 @@
             </div>
             <div class="cont">
                 <div class="sml">
-                    <img style="margin-top:20px;border-radius: 20px;" src="./../PNG/casa.png" width="72" height="72">
+                    <img style="margin-top:20px;border-radius: 20px;" src="${pageContext.request.contextPath}/PNG/casa.png" width="72" height="72">
                     <div class="separator"></div>
                     <div class="txt">Casablanca</div>
                 </div>
                 <div class="sml">
-                    <img style="margin-top:20px;border-radius: 20px;" src="./../PNG/rabat.png" width="72" height="72">
+                    <img style="margin-top:20px;border-radius: 20px;" src="${pageContext.request.contextPath}/PNG/rabat.png" width="72" height="72">
                     <div class="separator"></div>
                     <div class="txt">Rabat</div>
                 </div>
                 <div class="sml">
-                    <img style="margin-top:20px;border-radius: 20px;" src="./../PNG/marakech.png" width="72" height="72">
+                    <img style="margin-top:20px;border-radius: 20px;" src="${pageContext.request.contextPath}/PNG/marakech.png" width="72" height="72">
                     <div class="separator"></div>
                     <div class="txt">Marrakech</div>
                 </div>
                 <div class="sml">
-                    <img style="margin-top:20px; border-radius: 20px;" src="./../PNG/logo_tanger5.jpg" width="72" height="72">
+                    <img style="margin-top:20px; border-radius: 20px;" src="${pageContext.request.contextPath}/PNG/logo_tanger5.jpg" width="72" height="72">
                     <div class="separator"></div>
                     <div class="txt">Tanger</div>
                 </div>
@@ -186,8 +188,59 @@
 
     <div class="container">
         <div class="father">    
+            <% ResultSet R ;
+                if (request.getAttribute("result") != null) {
+                     R = (ResultSet) request.getAttribute("result");
+                }else{
+                    R=Connexion.Seconnecter().createStatement().executeQuery("select * from animal");
+                }
+                    while (R.next()) {
+                        if (R.getObject(6).equals("dog")) {
+                            out.print(" <div class = 'child' style='width:300px'>  "
+                                    + "<img style='margin-top:10px; padding:20px 10px;' src='" + request.getContextPath() + "/PNG/dog.png' width='150' height='150'>"
+                                    + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                    + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                    + "<div class = 'separation' > </div>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "</div>");
+                        }
+                        if (R.getObject(6).equals("cat")) {
+                            out.print(" <div class = 'child' style='width:300px'>  "
+                                    + " <img style ='margin-top:10px; padding:20px 10px; 'src ='"+request.getContextPath()+"/PNG/cat.png' width='150' height='150'>"
+                                    + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                    + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                    + "<div class = 'separation' > </div>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "</div>");
+                        }
+                        if (R.getObject(6).equals("bird")) {
+                            out.print(" <div class = 'child' style='width:300px'>  "
+                                    + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "PNG/bird.png' width='150' height='150'>"
+                                    + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                    + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                    + "<div class = 'separation' > </div>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "</div>");
+                        }
+                        if (R.getObject(6).equals("fish")) {
+                            out.print(" <div class = 'child' style='width:300px'>  "
+                                    + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "/PNG/fish.png' width='150' height='150'>"
+                                    + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                    + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                    + "<div class = 'separation' > </div>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "</div>");
+                        }
+
+                    }
+                
+
+            %>
+
         </div>
     </div>
+
+
 
 
 
