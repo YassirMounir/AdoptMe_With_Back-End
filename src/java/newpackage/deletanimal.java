@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DellE5570
  */
-public class MAJ extends HttpServlet {
+public class deletanimal extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class MAJ extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MAJ</title>");
+            out.println("<title>Servlet deletanimal</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MAJ at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet deletanimal at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,53 +73,22 @@ public class MAJ extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String option = request.getParameter("maj");
-        int r;
-        if (option.equals("Modify")) {
+        if (request.getParameter("delete") != null) {
             try {
-                String nom = request.getParameter("mdnom");
-                String prenom = request.getParameter("mdprenom");
-                String ville = request.getParameter("mdville");
-                String tele = request.getParameter("mdtele");
-                String mail = request.getParameter("mdemail");
-                if (nom.isEmpty() || prenom.isEmpty() || ville.isEmpty() || tele.isEmpty() || mail.isEmpty()) {
-                    request.setAttribute("message", "Modification Error: Please fill in empty fields.");
-                    request.getRequestDispatcher("JSP/Profile.jsp").forward(request, response);
-                } else {
-                    String req = "update proprietaire set nom='" + nom + "',prenom='" + prenom + "',numtel='"
-                            + tele + "',ville='" + ville
-                            + "',email='" + mail + "' WHERE id_pro='" + request.getSession().getAttribute("id").toString() + "'";
-                    System.out.println(req);
-                    r = Connexion.Seconnecter().createStatement().executeUpdate(req);
-
-                    if (r != 0) {
-                        response.sendRedirect("JSP/Profile.jsp");
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Authen.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if (option.equals("Delete My Profile")) {
-            try {
-                String req = "delete from proprietaire where id_pro ='" + request.getSession().getAttribute("id").toString() + "'";
-                r = Connexion.Seconnecter().createStatement().executeUpdate(req);
+                String req = "delete from animal where id_an='" + request.getParameter("delete") + "'";
                 System.out.println(req);
+                int r = Connexion.Seconnecter().createStatement().executeUpdate(req);
                 if (r != 0) {
-                    request.getSession().invalidate();
-                    response.sendRedirect(request.getContextPath() + "/index.jsp");
+                    response.sendRedirect("JSP/Profile.jsp");
                 } else {
-                    request.setAttribute("message", "<p style='color:red;'>Suppression Error: Please Try Again Later.</p>");
+                    request.setAttribute("msg", "<p style='color:red;'>Suppression Error: Please Try Again Later.</p>");
                     request.getRequestDispatcher("JSP/Profile.jsp").forward(request, response);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Authen.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.getMessage());
+                Logger.getLogger(MAJ.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (option.equals("Post Adoption Request")) {
-            response.sendRedirect("JSP/Addanimal.jsp");
-        }
+
     }
 
     /**

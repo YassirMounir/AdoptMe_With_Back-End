@@ -137,12 +137,13 @@ public class MAJAnimal extends HttpServlet {
                 } catch (SQLException ex) {
                     Logger.getLogger(MAJAnimal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-
-            
-
         }
-
+    }
+        
+        
+        
+        
+        
     }
 
     /**

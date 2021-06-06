@@ -16,6 +16,10 @@
         <servlet-name>MAJAnimal</servlet-name>
         <servlet-class>newpackage.MAJAnimal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deletanimal</servlet-name>
+        <servlet-class>newpackage.deletanimal</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authen</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>MAJAnimal</servlet-name>
         <url-pattern>/MAJAnimal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletanimal</servlet-name>
+        <url-pattern>/deletanimal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

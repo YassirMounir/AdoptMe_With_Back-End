@@ -71,6 +71,7 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <link rel=\"stylesheet\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/CSS/Footer.css\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css\" integrity=\"sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==\" crossorigin=\"anonymous\" />\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css\" \n");
       out.write("              integrity=\"sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==\" \n");
       out.write("              crossorigin=\"anonymous\" />\n");
@@ -84,7 +85,7 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        }\n");
       out.write("        var x;\n");
       out.write("        function Confirmation()\n");
-      out.write("        {\n");
+      out.write("        {   \n");
       out.write("            if (x.value === \"Delete My Profile\")\n");
       out.write("            {\n");
       out.write("                if (window.confirm(\"Do You Want To Delete Your Profile ?\"))\n");
@@ -100,6 +101,18 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            {\n");
       out.write("                if (window.confirm(\"Do You Want To Change Your Information ?\"))\n");
       out.write("                {\n");
+      out.write("                    return true;\n");
+      out.write("                }\n");
+      out.write("                else\n");
+      out.write("                {\n");
+      out.write("                    return false;\n");
+      out.write("                }\n");
+      out.write("                return true;\n");
+      out.write("            } else if (x.name === \"delete\")\n");
+      out.write("            { \n");
+      out.write("                if (window.confirm(\"Do You Want To delete This Pet ?\"))\n");
+      out.write("                {\n");
+      out.write("                    \n");
       out.write("                    return true;\n");
       out.write("                }\n");
       out.write("                else\n");
@@ -241,6 +254,7 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            align-items: center;\n");
       out.write("            box-shadow: rgba(49, 49, 99, 0.315) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;\n");
       out.write("            transition: 1s;\n");
+      out.write("            height: fit-content;\n");
       out.write("        }\n");
       out.write("\n");
       out.write("        p{\n");
@@ -260,6 +274,16 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            text-align: center;\n");
       out.write("            color: whitesmoke;\n");
       out.write("            margin: 0 20px;\n");
+      out.write("        }\n");
+      out.write("        .fa-trash-alt{\n");
+      out.write("            color: black;\n");
+      out.write("            width:60px;\n");
+      out.write("            height:60px;\n");
+      out.write("            padding:20px;\n");
+      out.write("            background-color: none;\n");
+      out.write("        }\n");
+      out.write("        .fa-trash-alt:hover{\n");
+      out.write("            color: whitesmoke;\n");
       out.write("        }\n");
       out.write("    </style>\n");
       out.write("    <body>\n");
@@ -389,22 +413,58 @@ out.print("Hello : " + R.getObject(2) + " " + R.getObject(3));
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </form>\n");
-      out.write("\n");
+      out.write("       <form action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/deletanimal\" method=\"post\" onsubmit=\"return Confirmation();\">\n");
       out.write("        <div class=\"myanimal\">\n");
-      out.write("            <h2 style=\"padding: 10px\"> My Animals </h2>\n");
+      out.write("            <h2 style=\"padding: 20px\"> My Animals </h2>\n");
       out.write("            <div class=\"container\">\n");
       out.write("                <div class=\"father\">  \n");
       out.write("                    ");
 
                         R = Connexion.Seconnecter().createStatement().executeQuery("select * from animal where ID_PRO ='" + request.getSession().getAttribute("id") + "'");
                         while (R.next()) {
-                            out.print(" <div class = 'child' style='width:300px'>  "
-                                    + " <img style ='margin-top:10px; 'src = '../PNG/icons-avatar.png' width='150' height='150'>"
-                                    + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
-                                    + "<h3> TYPE : " + R.getObject(6) + " </h3>"
-                                    + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> " + R.getObject(9) + " </p>"
-                                    + "</div>");
+                            if (R.getObject(6).equals("dog")) {
+                                out.print(" <div class = 'child' style='width:300px'>  "
+                                        + "<img style='margin-top:10px; padding:20px 10px;' src='" + request.getContextPath() + "/PNG/dog.png' width='150' height='150'>"
+                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                        + "<div class = 'separation' > </div>"
+                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt'></i></button>"
+                                        + "</div>");
+                            }
+                            if (R.getObject(6).equals("cat")) {
+                                out.print(" <div class = 'child' style='width:300px'>  "
+                                        + " <img style ='margin-top:10px; padding:20px 10px; 'src ='" + request.getContextPath() + "/PNG/cat.png' width='150' height='150'>"
+                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                        + "<div class = 'separation' > </div>"
+                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt'></i></button>"
+                                        + "</div>");
+                            }
+                            if (R.getObject(6).equals("bird")) {
+                                out.print(" <div class = 'child' style='width:300px'>  "
+                                        + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "PNG/bird.png' width='150' height='150'>"
+                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                        + "<div class = 'separation' > </div>"
+                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt'></i></button>"
+                                        + "</div>");
+                            }
+                            if (R.getObject(6).equals("fish")) {
+                                out.print(" <div class = 'child' style='width:300px'>  "
+                                        + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "/PNG/fish.png' width='150' height='150'>"
+                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                        + "<div class = 'separation' > </div>"
+                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt'></i></button>"
+                                        + "</div>");
+                            }
+
                         }
 
                     
@@ -412,6 +472,15 @@ out.print("Hello : " + R.getObject(2) + " " + R.getObject(3));
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
+      out.write("       </form>\n");
+      out.write("                                ");
+
+                    if (request.getAttribute("msg") != null) {
+                        out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+                    }
+                
+      out.write("\n");
+      out.write("        \n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
