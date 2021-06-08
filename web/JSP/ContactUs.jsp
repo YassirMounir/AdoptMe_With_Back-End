@@ -23,8 +23,23 @@
             var navbar = document.getElementById('nav');
             navbar.classList.toggle('show');
         }
-
     </script>
+    <script src="https://smtpjs.com/v3/smtp.js%22%3E"></script>
+    <script>
+    const inputs = document.getElementById('sub');
+            function sendemail() {
+                Email.send({
+                Host: "smtp.mailtrap.io",
+                        Username: "486dde62460635",
+                        Password: "245b495a7a3214",
+                        To: "support@AdoptMe.ma",
+                        From: inputs.elements['email'].value,
+                        Subject: inputs.elements['name'].value + '',
+                        Body: 'Name :' + inputs.elements['name'].value + "<br>" + 'Email : ' + inputs.elements['email'].value + "<br>" + 'phone : ' + inputs.elements['phone'].value + "<br>" + 'الطلبية : ' + "<br>" + inputs.elements['choose'].value,
+                }).then((message) = > alert(".ثم ارسال طلبيتك بنجاح"))
+            }
+    </script>
+
     <body>
         <!-- HEADER BEGIN -->
         <header>
@@ -34,11 +49,11 @@
                 <span class="bottom-span"></span>
             </div>
             <div class="logo">
-                <a href="./../index.html" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
+                <a href="${pageContext.request.contextPath}/index.jsp" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="./../index.jsp">HOME</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/Pets.jsp">PETS</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/About.jsp">ABOUT</a></li>
                         <%if (session.getAttribute("id") != null) {%>
@@ -67,18 +82,20 @@
                 <i class="fas fa-envelope"></i>
                 <input type="email" placeholder="Email" />
             </div> -->
+
+
         <div class="container">
             <div class="forms-container">
                 <div class="signin-signup">
-                    <form action="#" class="sign-up-form">
+                    <form action="#" class="sign-up-form" id="sub">
                         <h2 class="title">Feel Free To Contact Us</h2>
                         <div class="input-field">
                             Enter Your Name : <br>
-                            <input type="text"/>
+                            <input type="text" name="name"/>
                         </div>
                         <div class="input-field">
                             Enter Your Email : <br>
-                            <input type="email" />
+                            <input type="email" name="email"/>
                         </div>
                         <div class="input-fields">
                             Enter Your Message Here :
@@ -87,7 +104,7 @@
                                 </textarea>
                             </div>
                         </div>
-                        <input type="submit" class="btn" value="Submit" />
+                        <input type="button" class="btn" value="Submit" onclick="sendemail()"/>
                     </form>
                 </div>
             </div>
@@ -120,6 +137,7 @@
                 </div>
             </div>
         </div>
+    </form>
 
 
 
@@ -172,58 +190,58 @@
 
 
 
-        <footer>
-            <div class="footer-top">
-                <div class="footer-top-items">
-                    <h2>Adopt Me</h2>
-                    <p>It's a platform which allows you to publish and also allows you to find animals to adopt all around Morocco.</p>
-                    <h2>FOLLOW US</h2>
+    <footer>
+        <div class="footer-top">
+            <div class="footer-top-items">
+                <h2>Adopt Me</h2>
+                <p>It's a platform which allows you to publish and also allows you to find animals to adopt all around Morocco.</p>
+                <h2>FOLLOW US</h2>
+                <br>
+                <a class="fab fa-facebook-f social-icon" href="https://www.facebook.com/"></a>
+                <a class="fab fa-twitter social-icon" href="http://www.twitter.com/"></a>
+                <a class="fab fa-instagram social-icon" href="http://www.instagram.com/"></a>
+                <a class="fab fa-youtube social-icon" href="http://www.youtube.com/"></a>
+            </div>
+            <div class="footer-top-items">
+                <h2>USEFUL LINKS</h2>
+                <ul>
+                    <li><a href="./../index.jsp">Home</a></li>
+                    <!-- <li><a href="#">Prestataires</a></li> -->
+                    <li><a href="${pageContext.request.contextPath}/JSP/About.jsp">About US</a></li>
+                        <%if (session.getAttribute("id") != null) {%>
+                    <li></li>
+                        <%   } else {%>
+                    <li><a href="${pageContext.request.contextPath}/JSP/SignUp.jsp">Join US ?</a></li>             
+                        <% }%>                      
+                    <li><a href="${pageContext.request.contextPath}/JSP/ContactUs.jsp">Contact US</a></li>
+                </ul>
+            </div>
+            <div class="footer-top-items">
+                <h2>FIND US</h2>
+                <div class="tpitems">
+                    <i class="fa fa-map-pin icon" aria-hidden="true"></i><span>&nbsp;&nbsp;Rue Ibnou Nafis Résidence Ben Omar, IMM 375 Etage 4 N 21 Mâarif , Grand Casablanca,Morocco .
+                    </span>
                     <br>
-                    <a class="fab fa-facebook-f social-icon" href="https://www.facebook.com/"></a>
-                    <a class="fab fa-twitter social-icon" href="http://www.twitter.com/"></a>
-                    <a class="fab fa-instagram social-icon" href="http://www.instagram.com/"></a>
-                    <a class="fab fa-youtube social-icon" href="http://www.youtube.com/"></a>
-                </div>
-                <div class="footer-top-items">
-                    <h2>USEFUL LINKS</h2>
-                    <ul>
-                        <li><a href="./../index.jsp">Home</a></li>
-                        <!-- <li><a href="#">Prestataires</a></li> -->
-                        <li><a href="${pageContext.request.contextPath}/JSP/About.jsp">About US</a></li>
-                            <%if (session.getAttribute("id") != null) {%>
-                        <li></li>
-                            <%   } else {%>
-                        <li><a href="${pageContext.request.contextPath}/JSP/SignUp.jsp">Join US ?</a></li>             
-                            <% }%>                      
-                        <li><a href="${pageContext.request.contextPath}/JSP/ContactUs.jsp">Contact US</a></li>
-                    </ul>
-                </div>
-                <div class="footer-top-items">
-                    <h2>FIND US</h2>
-                    <div class="tpitems">
-                        <i class="fa fa-map-pin icon" aria-hidden="true"></i><span>&nbsp;&nbsp;Rue Ibnou Nafis Résidence Ben Omar, IMM 375 Etage 4 N 21 Mâarif , Grand Casablanca,Morocco .
-                        </span>
-                        <br>
-                        <br>
-                        <i class="fa fa-phone icon" aria-hidden="true"></i><span>&nbsp;&nbsp;&nbsp;+212 5 22 54 26 88</span>
-                        <br>
-                        <br>
+                    <br>
+                    <i class="fa fa-phone icon" aria-hidden="true"></i><span>&nbsp;&nbsp;&nbsp;+212 5 22 54 26 88</span>
+                    <br>
+                    <br>
 
-                        <i class="fa fa-envelope icon" aria-hidden="true"></i><span>&nbsp;&nbsp;&nbsp;contact@AdoptMe.com</span>
+                    <i class="fa fa-envelope icon" aria-hidden="true"></i><span>&nbsp;&nbsp;&nbsp;contact@AdoptMe.com</span>
 
 
-                    </div>   
-                </div>
+                </div>   
             </div>
-            <div class="footer-bottom">
-                <!-- © 2021 M3alem All rights reserved. -->
-                &copy;&nbsp;&nbsp;<b>Copyright 2021
-                    By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;
-                <!-- <div class="marq">
-                  <marquee direction="right" scrollamount="10">&copy;&nbsp;<b>Copyright 2021
-                      By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;&copy;</marquee>
-                </div> -->
-            </div>
-        </footer>
-    </body>
+        </div>
+        <div class="footer-bottom">
+            <!-- © 2021 M3alem All rights reserved. -->
+            &copy;&nbsp;&nbsp;<b>Copyright 2021
+                By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;
+            <!-- <div class="marq">
+              <marquee direction="right" scrollamount="10">&copy;&nbsp;<b>Copyright 2021
+                  By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;&copy;</marquee>
+            </div> -->
+        </div>
+    </footer>
+</body>
 </html>

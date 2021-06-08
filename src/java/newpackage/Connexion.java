@@ -5,6 +5,7 @@
  */
 package newpackage;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,11 +17,18 @@ import java.util.logging.Logger;
  */
 public class Connexion {
 
+    private static Connection conn;
+
     public static java.sql.Connection Seconnecter() {
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "AdoptMe", "123");
-            System.out.println("Successfully connected to oracle database ");
+            if (conn == null) {
+                
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "AdoptMe", "123");
+                
+                System.out.println("Successfully connected to oracle database AdoptMe");
+            }
             return conn;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);

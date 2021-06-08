@@ -154,11 +154,11 @@
                 <span class="bottom-span"></span>
             </div>
             <div class="logo">
-                <a href="../index.jsp" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png" /></a>
+                <a href="${pageContext.request.contextPath}/index.jsp" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png" /></a>
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="../index.jsp">HOME</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/Pets.jsp">PETS</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/About.jsp">ABOUT</a></li>
                         <%if (session.getAttribute("id") != null) {%>

@@ -50,11 +50,11 @@
             </div>
 
             <div class="logo">
-                <a href="../index.jsp" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
+                <a href="${pageContext.request.contextPath}/index.jsp" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="./../index.jsp">HOME</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                     <li><a href="#">PETS</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/About.jsp">ABOUT</a></li>
                         <%if (session.getAttribute("id") != null) {%>
@@ -188,38 +188,43 @@
 
     <div class="container">
         <div class="father">    
-            <% ResultSet R ;
+            <%          ResultSet R;
+
                 if (request.getAttribute("result") != null) {
-                     R = (ResultSet) request.getAttribute("result");
-                }else{
-                    R=Connexion.Seconnecter().createStatement().executeQuery("select * from animal");
+                    R = (ResultSet) request.getAttribute("result");
+                } else {
+                    R = Connexion.Seconnecter().createStatement().executeQuery("select * from animal");
                 }
-                    while (R.next()) {
+                if (R.next()) {
+                    do {
                         if (R.getObject(6).equals("dog")) {
                             out.print(" <div class = 'child' style='width:300px'>  "
                                     + "<img style='margin-top:10px; padding:20px 10px;' src='" + request.getContextPath() + "/PNG/dog.png' width='150' height='150'>"
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px;color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
                         if (R.getObject(6).equals("cat")) {
                             out.print(" <div class = 'child' style='width:300px'>  "
-                                    + " <img style ='margin-top:10px; padding:20px 10px; 'src ='"+request.getContextPath()+"/PNG/cat.png' width='150' height='150'>"
+                                    + " <img style ='margin-top:10px; padding:20px 10px;' src ='" + request.getContextPath() + "/PNG/cat.png' width='150' height='150'>"
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px; color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
                         if (R.getObject(6).equals("bird")) {
                             out.print(" <div class = 'child' style='width:300px'>  "
-                                    + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "PNG/bird.png' width='150' height='150'>"
+                                    + " <img style ='margin-top:10px;  padding:20px 10px;' src ='" + request.getContextPath() + "/PNG/bird.png' width='150' height='150'>"
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px; color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
                         if (R.getObject(6).equals("fish")) {
@@ -228,17 +233,23 @@
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px; color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
 
-                    }
-                
+                    } while (R.next());
+
+                }else out.print("<p style='color: red '>Searsh Error: No Pet Found.</p>");
+ 
+
+
 
             %>
 
         </div>
     </div>
+
 
 
 
@@ -262,13 +273,14 @@
             <div class="footer-top-items">
                 <h2>USEFUL LINKS</h2>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.jsp">Home</a></li>
                     <!-- <li><a href="#">Prestataires</a></li> -->
                     <li><a href="${pageContext.request.contextPath}/JSP/About.jsp">About US</a></li>
-                        <%if (session.getAttribute("id") != null) {%>
+                    <!--<li><a href="${pageContext.request.contextPath}/JSP/SignUp.jsp">Join US ?</a></li>-->
+                    <%if (session.getAttribute("id") != null) {%>
                     <li></li>
                         <%   } else {%>
-                    <li><a href="${pageContext.request.contextPath}/JSP/SignUp.jsp">Join US ?</a></li>             
+                    <li><li><a href="${pageContext.request.contextPath}/JSP/SignUp.jsp">Join US ?</a></li></li>              
                         <% }%>
                     <li><a href="${pageContext.request.contextPath}/JSP/ContactUs.jsp">Contact US</a></li>
                 </ul>
@@ -276,27 +288,20 @@
             <div class="footer-top-items">
                 <h2>FIND US</h2>
                 <div class="tpitems">
-                    <i class="fa fa-map-pin icon" aria-hidden="true"></i><span>&nbsp;&nbsp;Rue Ibnou Nafis Résidence Ben Omar, IMM 375 Etage 4 N 21 Mâarif , Grand Casablanca,Morocco .</span>
+                    <i class="fa fa-map-pin icon" aria-hidden="true"></i><span>&nbsp;&nbsp;Rue Ibnou Nafis Résidence Ben Omar, IMM 375 Etage 4 N 21 Mâarif , Grand Casablanca,Morocco .
+                    </span>
                     <br>
                     <br>
                     <i class="fa fa-phone icon" aria-hidden="true"></i><span>&nbsp;&nbsp;&nbsp;+212 5 22 54 26 88</span>
                     <br>
                     <br>
-
                     <i class="fa fa-envelope icon" aria-hidden="true"></i><span>&nbsp;&nbsp;&nbsp;contact@AdoptMe.com</span>
-
-
                 </div>   
             </div>
         </div>
         <div class="footer-bottom">
-            <!-- © 2021 M3alem All rights reserved. -->
             &copy;&nbsp;&nbsp;<b>Copyright 2021
                 By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;
-            <!-- <div class="marq">
-              <marquee direction="right" scrollamount="10">&copy;&nbsp;<b>Copyright 2021
-                  By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;&copy;</marquee>
-            </div> -->
         </div>
     </footer>
 

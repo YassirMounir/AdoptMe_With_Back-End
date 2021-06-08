@@ -37,7 +37,7 @@
         }
         var x;
         function Confirmation()
-        {   
+        {
             if (x.value === "Delete My Profile")
             {
                 if (window.confirm("Do You Want To Delete Your Profile ?"))
@@ -61,10 +61,10 @@
                 }
                 return true;
             } else if (x.name === "delete")
-            { 
+            {
                 if (window.confirm("Do You Want To delete This Pet ?"))
                 {
-                    
+
                     return true;
                 }
                 else
@@ -189,6 +189,7 @@
         }
         .father{
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-around;
 
@@ -207,6 +208,7 @@
             box-shadow: rgba(49, 49, 99, 0.315) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
             transition: 1s;
             height: fit-content;
+            width:fit-content;
         }
 
         p{
@@ -245,11 +247,11 @@
             </div>
 
             <div class="logo">
-                <a href="./../index.png" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
+                <a href="${pageContext.request.contextPath}/index.jsp" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="../index.jsp">HOME</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/Pets.jsp">PETS</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/About.jsp">ABOUT</a></li>
                         <%if (session.getAttribute("id") != null) {%>
@@ -325,68 +327,67 @@
                 </div>
             </div>
         </form>
-       <form action="${pageContext.request.contextPath}/deletanimal" method="post" onsubmit="return Confirmation();">
-        <div class="myanimal">
-            <h2 style="padding: 20px"> My Animals </h2>
-            <div class="container">
-                <div class="father">  
-                    <%
-                        R = Connexion.Seconnecter().createStatement().executeQuery("select * from animal where ID_PRO ='" + request.getSession().getAttribute("id") + "'");
-                        while (R.next()) {
-                            if (R.getObject(6).equals("dog")) {
-                                out.print(" <div class = 'child' style='width:300px'>  "
-                                        + "<img style='margin-top:10px; padding:20px 10px;' src='" + request.getContextPath() + "/PNG/dog.png' width='150' height='150'>"
-                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
-                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
-                                        + "<div class = 'separation' > </div>"
-                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
-                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
-                                        + "</div>");
-                            }
-                            if (R.getObject(6).equals("cat")) {
-                                out.print(" <div class = 'child' style='width:300px'>  "
-                                        + " <img style ='margin-top:10px; padding:20px 10px; 'src ='" + request.getContextPath() + "/PNG/cat.png' width='150' height='150'>"
-                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
-                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
-                                        + "<div class = 'separation' > </div>"
-                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
-                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
-                                        + "</div>");
-                            }
-                            if (R.getObject(6).equals("bird")) {
-                                out.print(" <div class = 'child' style='width:300px'>  "
-                                        + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "/PNG/bird.png' width='150' height='150'>"
-                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
-                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
-                                        + "<div class = 'separation' > </div>"
-                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
-                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
-                                        + "</div>");
-                            }
-                            if (R.getObject(6).equals("fish")) {
-                                out.print(" <div class = 'child' style='width:300px'>  "
-                                        + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "/PNG/fish.png' width='150' height='150'>"
-                                        + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
-                                        + "<h3> RACE : " + R.getObject(6) + " </h3>"
-                                        + "<div class = 'separation' > </div>"
-                                        + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
-                                        + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
-                                        + "</div>");
+        <form action="${pageContext.request.contextPath}/deletanimal" method="post" onsubmit="return Confirmation();">
+            <div class="myanimal">
+                <h2 style="padding: 20px"> My Animals </h2>
+                <div class="container">
+                    <div class="father">  
+                        <%
+                            R = Connexion.Seconnecter().createStatement().executeQuery("select * from animal where ID_PRO ='" + request.getSession().getAttribute("id") + "'");
+                            while (R.next()) {
+                                if (R.getObject(6).equals("dog")) {
+                                    out.print(" <div class = 'child' style='width:300px'>  "
+                                            + "<img style='margin-top:10px; padding:20px 10px;' src='" + request.getContextPath() + "/PNG/dog.png' width='150' height='150'>"
+                                            + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                            + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                            + "<div class = 'separation' > </div>"
+                                            + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                            + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
+                                            + "</div>");
+                                }
+                                if (R.getObject(6).equals("cat")) {
+                                    out.print(" <div class = 'child' style='width:300px'>  "
+                                            + " <img style ='margin-top:10px; padding:20px 10px; 'src ='" + request.getContextPath() + "/PNG/cat.png' width='150' height='150'>"
+                                            + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                            + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                            + "<div class = 'separation' > </div>"
+                                            + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                            + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
+                                            + "</div>");
+                                }
+                                if (R.getObject(6).equals("bird")) {
+                                    out.print(" <div class = 'child' style='width:300px'>  "
+                                            + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "/PNG/bird.png' width='150' height='150'>"
+                                            + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                            + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                            + "<div class = 'separation' > </div>"
+                                            + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                            + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
+                                            + "</div>");
+                                }
+                                if (R.getObject(6).equals("fish")) {
+                                    out.print(" <div class = 'child' style='width:300px'>  "
+                                            + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "/PNG/fish.png' width='150' height='150'>"
+                                            + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
+                                            + "<h3> RACE : " + R.getObject(6) + " </h3>"
+                                            + "<div class = 'separation' > </div>"
+                                            + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                            + "<button style='background-color: #856b6b; border:none;' type='submit' name='delete' value='" + R.getObject(1) + "' onclick='recuperer_etat(this)'><i class='far fa-trash-alt fa-2x'></i></button>"
+                                            + "</div>");
+                                }
+
                             }
 
-                        }
-
-                    %>
+                        %>
+                    </div>
                 </div>
             </div>
-        </div>
-       </form>
-                                <%
-                    if (request.getAttribute("msg") != null) {
-                        out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
-                    }
-                %>
-        
+        </form>
+        <%                                    if (request.getAttribute("msg") != null) {
+                out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+            }
+        %>
+
 
 
 

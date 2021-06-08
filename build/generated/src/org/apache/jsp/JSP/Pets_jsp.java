@@ -101,13 +101,17 @@ public final class Pets_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\n");
       out.write("\n");
       out.write("            <div class=\"logo\">\n");
-      out.write("                <a href=\"../index.jsp\" class=\"logo\"><img src=\"");
+      out.write("                <a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/index.jsp\" class=\"logo\"><img src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/PNG/logo1111.png\"/></a>\n");
       out.write("            </div>\n");
       out.write("            <nav id=\"nav\">\n");
       out.write("                <ul>\n");
-      out.write("                    <li><a href=\"./../index.jsp\">HOME</a></li>\n");
+      out.write("                    <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/index.jsp\">HOME</a></li>\n");
       out.write("                    <li><a href=\"#\">PETS</a></li>\n");
       out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -268,38 +272,43 @@ if (session.getAttribute("id") != null) {
       out.write("    <div class=\"container\">\n");
       out.write("        <div class=\"father\">    \n");
       out.write("            ");
- ResultSet R ;
+          ResultSet R;
+
                 if (request.getAttribute("result") != null) {
-                     R = (ResultSet) request.getAttribute("result");
-                }else{
-                    R=Connexion.Seconnecter().createStatement().executeQuery("select * from animal");
+                    R = (ResultSet) request.getAttribute("result");
+                } else {
+                    R = Connexion.Seconnecter().createStatement().executeQuery("select * from animal");
                 }
-                    while (R.next()) {
+                if (R.next()) {
+                    do {
                         if (R.getObject(6).equals("dog")) {
                             out.print(" <div class = 'child' style='width:300px'>  "
                                     + "<img style='margin-top:10px; padding:20px 10px;' src='" + request.getContextPath() + "/PNG/dog.png' width='150' height='150'>"
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px;color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
                         if (R.getObject(6).equals("cat")) {
                             out.print(" <div class = 'child' style='width:300px'>  "
-                                    + " <img style ='margin-top:10px; padding:20px 10px; 'src ='"+request.getContextPath()+"/PNG/cat.png' width='150' height='150'>"
+                                    + " <img style ='margin-top:10px; padding:20px 10px;' src ='" + request.getContextPath() + "/PNG/cat.png' width='150' height='150'>"
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px; color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
                         if (R.getObject(6).equals("bird")) {
                             out.print(" <div class = 'child' style='width:300px'>  "
-                                    + " <img style ='margin-top:10px;  padding:20px 10px;'src = '" + request.getContextPath() + "PNG/bird.png' width='150' height='150'>"
+                                    + " <img style ='margin-top:10px;  padding:20px 10px;' src ='" + request.getContextPath() + "/PNG/bird.png' width='150' height='150'>"
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px; color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
                         if (R.getObject(6).equals("fish")) {
@@ -308,18 +317,24 @@ if (session.getAttribute("id") != null) {
                                     + "<h2 style = ' text-shadow:none;' > NAME : " + R.getObject(3) + " </h2>"
                                     + "<h3> RACE : " + R.getObject(6) + " </h3>"
                                     + "<div class = 'separation' > </div>"
-                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> <p style ='width:fit-content;'>" + R.getObject(9) + "</p> </p>"
+                                    + "<p style = 'text-transform:capitalize;'> description of the animal <br> </p> <p style ='width:fit-content;'>" + R.getObject(9) + " </p>"
+                                    + "<span style='text-decoration: none;padding:10px; color:black;margin-left:140px;'>See More<a class='fa fa-arrow-right' href='" + request.getContextPath() + "/JSP/PetProfile.jsp?id_an=" + R.getObject(1) + "' style='text-decoration: none; color:black;margin-left:10px;'></a></span>"
                                     + "</div>");
                         }
 
-                    }
-                
+                    } while (R.next());
+
+                }else out.print("<p style='color: red '>Searsh Error: No Pet Found.</p>");
+ 
+
+
 
             
       out.write("\n");
       out.write("\n");
       out.write("        </div>\n");
       out.write("    </div>\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -343,21 +358,24 @@ if (session.getAttribute("id") != null) {
       out.write("            <div class=\"footer-top-items\">\n");
       out.write("                <h2>USEFUL LINKS</h2>\n");
       out.write("                <ul>\n");
-      out.write("                    <li><a href=\"../index.html\">Home</a></li>\n");
+      out.write("                    <li><a href=\"../index.jsp\">Home</a></li>\n");
       out.write("                    <!-- <li><a href=\"#\">Prestataires</a></li> -->\n");
       out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/JSP/About.jsp\">About US</a></li>\n");
-      out.write("                        ");
+      out.write("                    <!--<li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/JSP/SignUp.jsp\">Join US ?</a></li>-->\n");
+      out.write("                    ");
 if (session.getAttribute("id") != null) {
       out.write("\n");
       out.write("                    <li></li>\n");
       out.write("                        ");
    } else {
       out.write("\n");
-      out.write("                    <li><a href=\"");
+      out.write("                    <li><li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/JSP/SignUp.jsp\">Join US ?</a></li>             \n");
+      out.write("/JSP/SignUp.jsp\">Join US ?</a></li></li>              \n");
       out.write("                        ");
  }
       out.write("\n");
@@ -369,27 +387,20 @@ if (session.getAttribute("id") != null) {
       out.write("            <div class=\"footer-top-items\">\n");
       out.write("                <h2>FIND US</h2>\n");
       out.write("                <div class=\"tpitems\">\n");
-      out.write("                    <i class=\"fa fa-map-pin icon\" aria-hidden=\"true\"></i><span>&nbsp;&nbsp;Rue Ibnou Nafis Résidence Ben Omar, IMM 375 Etage 4 N 21 Mâarif , Grand Casablanca,Morocco .</span>\n");
+      out.write("                    <i class=\"fa fa-map-pin icon\" aria-hidden=\"true\"></i><span>&nbsp;&nbsp;Rue Ibnou Nafis Résidence Ben Omar, IMM 375 Etage 4 N 21 Mâarif , Grand Casablanca,Morocco .\n");
+      out.write("                    </span>\n");
       out.write("                    <br>\n");
       out.write("                    <br>\n");
       out.write("                    <i class=\"fa fa-phone icon\" aria-hidden=\"true\"></i><span>&nbsp;&nbsp;&nbsp;+212 5 22 54 26 88</span>\n");
       out.write("                    <br>\n");
       out.write("                    <br>\n");
-      out.write("\n");
       out.write("                    <i class=\"fa fa-envelope icon\" aria-hidden=\"true\"></i><span>&nbsp;&nbsp;&nbsp;contact@AdoptMe.com</span>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("                </div>   \n");
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("        <div class=\"footer-bottom\">\n");
-      out.write("            <!-- © 2021 M3alem All rights reserved. -->\n");
       out.write("            &copy;&nbsp;&nbsp;<b>Copyright 2021\n");
       out.write("                By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;\n");
-      out.write("            <!-- <div class=\"marq\">\n");
-      out.write("              <marquee direction=\"right\" scrollamount=\"10\">&copy;&nbsp;<b>Copyright 2021\n");
-      out.write("                  By</b>&nbsp;&nbsp;<b>ADOPT.ME</b>&nbsp;&copy;</marquee>\n");
-      out.write("            </div> -->\n");
       out.write("        </div>\n");
       out.write("    </footer>\n");
       out.write("\n");

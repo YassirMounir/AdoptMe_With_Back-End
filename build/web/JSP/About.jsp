@@ -45,11 +45,11 @@
             </div>
 
             <div class="logo">
-                <a href="./../index.html" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
+                <a href="${pageContext.request.contextPath}/index.jsp" class="logo"><img src="${pageContext.request.contextPath}/PNG/logo1111.png"/></a>
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="./../index.jsp">HOME</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                     <li><a href="${pageContext.request.contextPath}/JSP/Pets.jsp">PETS</a></li>
                     <li><a href="#">ABOUT</a></li>
                         <%if (session.getAttribute("id") != null) {%>
