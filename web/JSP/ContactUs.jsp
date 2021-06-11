@@ -24,22 +24,6 @@
             navbar.classList.toggle('show');
         }
     </script>
-    <script src="https://smtpjs.com/v3/smtp.js%22%3E"></script>
-    <script>
-    const inputs = document.getElementById('sub');
-            function sendemail() {
-                Email.send({
-                Host: "smtp.mailtrap.io",
-                        Username: "486dde62460635",
-                        Password: "245b495a7a3214",
-                        To: "support@AdoptMe.ma",
-                        From: inputs.elements['email'].value,
-                        Subject: inputs.elements['name'].value + '',
-                        Body: 'Name :' + inputs.elements['name'].value + "<br>" + 'Email : ' + inputs.elements['email'].value + "<br>" + 'phone : ' + inputs.elements['phone'].value + "<br>" + 'الطلبية : ' + "<br>" + inputs.elements['choose'].value,
-                }).then((message) = > alert(".ثم ارسال طلبيتك بنجاح"))
-            }
-    </script>
-
     <body>
         <!-- HEADER BEGIN -->
         <header>
